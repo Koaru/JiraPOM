@@ -23,18 +23,29 @@ public class Login {
     @FindBy (id = "login-form-password")
     WebElement password;
     @FindBy (id = "login")
+    WebElement dashboardLoginBtn;
+    @FindBy (id = "login-form-submit")
     WebElement loginBtn;
+    @FindBy (id = "usernameerror")
+    WebElement usernameError;
 
 
     public void setUsername(String name){
         username.sendKeys(name);
     }
-
     public void setPassword(String pwd){
         password.sendKeys(pwd);
     }
+    public void clickOnDashboardLoginBtn(){
+        dashboardLoginBtn.click();
+    }
+    public void clickOnLoginBtn(){ loginBtn.click(); }
 
-    public void clickOnLoginBtn(){
-        loginBtn.click();
+    public String getURL(){
+        return driver.getCurrentUrl();
+    }
+
+    public Boolean usernameErrorIsPresent(){
+        return usernameError.isDisplayed();
     }
 }

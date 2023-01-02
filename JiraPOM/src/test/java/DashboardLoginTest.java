@@ -4,15 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
-public class LoginTest {
+
+public class DashboardLoginTest {
     static WebDriver driver;
     static Login login;
-    static final String URL = "https://jira-auto.codecool.metastage.net/login.jsp";
+    static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
 
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";
+    final String EXPECTED_URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeAll
     public static void setup(){
@@ -28,7 +30,7 @@ public class LoginTest {
         Profile profile = new Profile(driver);
         login.setUsername(VALID_USERNAME);
         login.setPassword(VALID_PASSWORD);
-        login.clickOnLoginBtn();
+        login.clickOnDashboardLoginBtn();
         dashboard.clickOnProfileBtn();
         dashboard.clickOnProfile();
         Assertions.assertEquals(VALID_USERNAME,profile.getUsername());
@@ -38,7 +40,7 @@ public class LoginTest {
     public void invalidLoginWithInvalidUsername(){
         login.setUsername(INVALID_USERNAME);
         login.setPassword(VALID_PASSWORD);
-        login.clickOnLoginBtn();
+        login.clickOnDashboardLoginBtn();
         Assertions.assertTrue(login.usernameErrorIsPresent());
     }
 
@@ -46,7 +48,7 @@ public class LoginTest {
     public void invalidLoginWithInvalidPassword(){
         login.setUsername(VALID_USERNAME);
         login.setPassword(INVALID_PASSWORD);
-        login.clickOnLoginBtn();
+        login.clickOnDashboardLoginBtn();
         Assertions.assertTrue(login.usernameErrorIsPresent());
     }
 }
