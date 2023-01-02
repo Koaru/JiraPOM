@@ -3,13 +3,15 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
+import util.*;
 
 public class LoginTest {
     static WebDriver driver;
     static Login login;
     static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
-    final String VALID_USERNAME = System.getenv("VALID_USERNAME");
-    final String VALID_PASSWORD = System.getenv("VALID_PASSWORD");
+    static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
+    static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
+
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";
 
