@@ -22,6 +22,10 @@ public class Dashboard {
     WebElement profileBtn;
     @FindBy (id = "view_profile")
     WebElement profile;
+    @FindBy (id = "log_out")
+    WebElement logoutBtn;
+    @FindBy (xpath = "//div[@class='aui-message aui-message-info']")
+    WebElement logoutMsg;
 
     public void clickOnProfileBtn(){
         profileBtn.click();
@@ -29,6 +33,14 @@ public class Dashboard {
 
     public void clickOnProfile(){
         profile.click();
+    }
+
+    public void clickOnLogoutBtn(){
+        logoutBtn.click();
+    }
+
+    public String logoutMessage(){
+        return logoutMsg.getText();
     }
 
 }

@@ -48,4 +48,16 @@ public class Login {
     public Boolean usernameErrorIsPresent(){
         return usernameError.isDisplayed();
     }
+
+    public void loggingIn(String user, String pwd){
+        setUsername(user);
+        setPassword(pwd);
+        clickOnLoginBtn();
+    }
+
+    public void loggingInInDashboard(String user, String pwd){
+        setUsername(user);
+        setPassword(pwd);
+        clickOnDashboardLoginBtn();
+    }
 }

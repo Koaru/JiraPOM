@@ -4,16 +4,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pageFactory.*;
-public class LoginTest {
+import pageFactory.*;public class LogoutTest {
     static WebDriver driver;
     static Login login;
     static final String URL = "https://jira-auto.codecool.metastage.net/login.jsp";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
-
-    final String INVALID_USERNAME = "invalid-username";
-    final String INVALID_PASSWORD = "invalid-password";
+    final String EXPECTED_MESSAGE = "You are now logged out. Any automatic login has also been stopped.\n" +
+            "Didn't mean to log out? Log in again.";
 
     @BeforeAll
     public static void setup(){
@@ -21,28 +19,15 @@ public class LoginTest {
         login = new Login(driver);
         driver.get(URL);
         driver.manage().window().maximize();
-    }
-
-    @Test
-    public void validLogin(){
-        Dashboard dashboard = new Dashboard(driver);
-        Profile profile = new Profile(driver);
         login.loggingIn(VALID_USERNAME,VALID_PASSWORD);
+    }
+
+    @Test
+    public void logout(){
+        Dashboard dashboard = new Dashboard(driver);
         dashboard.clickOnProfileBtn();
-        dashboard.clickOnProfile();
-        Assertions.assertEquals(VALID_USERNAME,profile.getUsername());
-    }
-
-    @Test
-    public void invalidLoginWithInvalidUsername(){
-        login.loggingIn(INVALID_USERNAME,VALID_PASSWORD);
-        Assertions.assertTrue(login.usernameErrorIsPresent());
-    }
-
-    @Test
-    public void invalidLoginWithInvalidPassword(){
-        login.loggingIn(VALID_USERNAME,INVALID_PASSWORD);
-        Assertions.assertTrue(login.usernameErrorIsPresent());
+        dashboard.clickOnLogoutBtn();
+        Assertions.assertEquals(dashboard.logoutMessage(),EXPECTED_MESSAGE);
     }
 
     @AfterAll

@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -28,9 +29,7 @@ public class DashboardLoginTest {
     public void validLogin(){
         Dashboard dashboard = new Dashboard(driver);
         Profile profile = new Profile(driver);
-        login.setUsername(VALID_USERNAME);
-        login.setPassword(VALID_PASSWORD);
-        login.clickOnDashboardLoginBtn();
+        login.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
         dashboard.clickOnProfileBtn();
         dashboard.clickOnProfile();
         Assertions.assertEquals(VALID_USERNAME,profile.getUsername());
@@ -38,17 +37,18 @@ public class DashboardLoginTest {
 
     @Test
     public void invalidLoginWithInvalidUsername(){
-        login.setUsername(INVALID_USERNAME);
-        login.setPassword(VALID_PASSWORD);
-        login.clickOnDashboardLoginBtn();
+        login.loggingInInDashboard(INVALID_USERNAME,VALID_PASSWORD);
         Assertions.assertTrue(login.usernameErrorIsPresent());
     }
 
     @Test
     public void invalidLoginWithInvalidPassword(){
-        login.setUsername(VALID_USERNAME);
-        login.setPassword(INVALID_PASSWORD);
-        login.clickOnDashboardLoginBtn();
+        login.loggingInInDashboard(VALID_USERNAME,INVALID_PASSWORD);
         Assertions.assertTrue(login.usernameErrorIsPresent());
+    }
+
+    @AfterAll
+    public static void tearDown(){
+        driver.close();
     }
 }
