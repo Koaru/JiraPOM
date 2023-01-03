@@ -15,7 +15,6 @@ public class DashboardLoginTest {
 
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";
-    final String EXPECTED_URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeAll
     public static void setup(){
