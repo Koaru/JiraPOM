@@ -48,4 +48,9 @@ public class LoginTest {
     public void tearDown(){
         driver.close();
     }
+
+    @AfterAll
+    public static void quit(){
+        driver.quit();
+    }
 }

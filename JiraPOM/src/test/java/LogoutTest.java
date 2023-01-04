@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pageFactory.*;public class LogoutTest {
+import pageFactory.*;
+public class LogoutTest {
     static WebDriver driver;
     static Login login;
     static final String URL = "https://jira-auto.codecool.metastage.net/login.jsp";
@@ -33,5 +34,10 @@ import pageFactory.*;public class LogoutTest {
     @AfterEach
     public void tearDown(){
         driver.close();
+    }
+
+    @AfterAll
+    public static void quit(){
+        driver.quit();
     }
 }

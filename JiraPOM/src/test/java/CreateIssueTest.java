@@ -146,4 +146,9 @@ public class CreateIssueTest {
     public void tearDown(){
         driver.close();
     }
+
+    @AfterAll
+    public static void quit(){
+        driver.quit();
+    }
 }
