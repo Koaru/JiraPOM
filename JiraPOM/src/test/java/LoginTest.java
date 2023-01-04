@@ -1,7 +1,4 @@
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
@@ -14,11 +11,13 @@ public class LoginTest {
 
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";
-
     @BeforeAll
     public static void setup(){
         driver = new ChromeDriver();
         login = new Login(driver);
+    }
+    @BeforeEach
+    public void init(){
         driver.get(URL);
         driver.manage().window().maximize();
     }
@@ -45,8 +44,8 @@ public class LoginTest {
         Assertions.assertTrue(login.usernameErrorIsPresent());
     }
 
-    @AfterAll
-    public static void tearDown(){
+    @AfterEach
+    public void tearDown(){
         driver.close();
     }
 }

@@ -67,6 +67,7 @@ public class Dashboard {
     }
 
     public void clickOnCreateBtn(){
+        wait.until(ExpectedConditions.elementToBeClickable(createBtn));
         createBtn.click();
     }
 

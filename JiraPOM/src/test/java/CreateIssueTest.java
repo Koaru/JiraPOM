@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CreateIssueTest {
     static WebDriver driver;
     static Login login;
@@ -22,13 +23,15 @@ public class CreateIssueTest {
     static final String TASK = util.ReadFromConfig.readFromFile("TASK");
     static final String STORY = util.ReadFromConfig.readFromFile("STORY");
 
-
-    @BeforeEach
-    public void setup(){
+    @BeforeAll
+    public static void setup(){
         driver = new ChromeDriver();
         login = new Login(driver);
         issue = new Issue(driver);
         dashboard = new Dashboard(driver);
+    }
+    @BeforeEach
+    public void init(){
         driver.get(URL);
         driver.manage().window().maximize();
         login.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);

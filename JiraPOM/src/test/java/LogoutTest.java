@@ -1,7 +1,4 @@
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;public class LogoutTest {
@@ -17,6 +14,9 @@ import pageFactory.*;public class LogoutTest {
     public static void setup(){
         driver = new ChromeDriver();
         login = new Login(driver);
+    }
+    @BeforeEach
+    public void init(){
         driver.get(URL);
         driver.manage().window().maximize();
         login.loggingIn(VALID_USERNAME,VALID_PASSWORD);
@@ -30,8 +30,8 @@ import pageFactory.*;public class LogoutTest {
         Assertions.assertEquals(dashboard.logoutMessage(),EXPECTED_MESSAGE);
     }
 
-    @AfterAll
-    public static void tearDown(){
+    @AfterEach
+    public void tearDown(){
         driver.close();
     }
 }
