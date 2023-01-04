@@ -1,10 +1,9 @@
 import com.beust.jcommander.Parameter;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
+
 public class CreateIssueTest {
     static WebDriver driver;
     static Login login;
@@ -34,8 +33,8 @@ public class CreateIssueTest {
         driver.manage().window().maximize();
         login.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
     }
-
     @Test
+    @Order(1)
     public void createIssueHappy(){
         dashboard.clickOnCreateBtn();
         dashboard.fillSummary(SUMMARY_DATA);
@@ -49,6 +48,7 @@ public class CreateIssueTest {
     }
 
     @Test
+    @Order(2)
     public void createIssueCancel(){
         dashboard.clickOnCreateBtn();
         Boolean isActive = dashboard.isModalWindowsDisplayed();
@@ -58,6 +58,7 @@ public class CreateIssueTest {
     }
 
     @Test
+    @Order(3)
     public void createIssueWithEmptySummaryField(){
         dashboard.clickOnCreateBtn();
         dashboard.clickOnCreateIssueBtn();
@@ -65,6 +66,7 @@ public class CreateIssueTest {
     }
 
     @Test
+    @Order(4)
     public void createIssueWithNonExistingProject(){
         dashboard.clickOnCreateBtn();
         String beforeText = dashboard.getProjectFieldText();
@@ -88,17 +90,57 @@ public class CreateIssueTest {
     }
 
     @Test
+    @Order(5)
     public void createIssueCoalaAndBug(){
         createIssueByProjectAndType(COALA,BUG);
     }
 
     @Test
+    @Order(6)
     public void createIssueCoalaAndStory(){
         createIssueByProjectAndType(COALA,STORY);
     }
 
     @Test
+    @Order(7)
     public void createIssueCoalaAndTask(){
         createIssueByProjectAndType(COALA,TASK);
+    }
+
+    @Test
+    @Order(8)
+    public void createIssueToucanAndBug(){
+        createIssueByProjectAndType(TOUCAN,BUG);
+    }
+    @Test
+    @Order(9)
+    public void createIssueToucanAndStory(){
+        createIssueByProjectAndType(TOUCAN,STORY);
+    }
+    @Test
+    @Order(10)
+    public void createIssueToucanAndTask(){
+        createIssueByProjectAndType(TOUCAN,TASK);
+    }
+    @Test
+    @Order(11)
+    public void createIssueJetiAndBug(){
+        createIssueByProjectAndType(JETI,BUG);
+    }
+    @Test
+    @Order(12)
+    public void createIssueJetiAndStory(){
+        createIssueByProjectAndType(JETI,STORY);
+    }
+    @Test
+    @Order(13)
+    public void createIssueJetiAndTask(){
+        createIssueByProjectAndType(JETI,TASK);
+    }
+
+    @AfterAll
+    @Order(14)
+    public static void tearDown(){
+        driver.close();
     }
 }
