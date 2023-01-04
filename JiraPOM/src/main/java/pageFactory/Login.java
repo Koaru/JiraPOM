@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -37,6 +38,7 @@ public class Login {
         password.sendKeys(pwd);
     }
     public void clickOnDashboardLoginBtn(){
+        wait.until(ExpectedConditions.elementToBeClickable(dashboardLoginBtn));
         dashboardLoginBtn.click();
     }
     public void clickOnLoginBtn(){ loginBtn.click(); }
@@ -46,6 +48,7 @@ public class Login {
     }
 
     public Boolean usernameErrorIsPresent(){
+        wait.until(ExpectedConditions.visibilityOf(usernameError));
         return usernameError.isDisplayed();
     }
 

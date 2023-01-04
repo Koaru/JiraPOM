@@ -29,6 +29,7 @@ public class Issue {
     WebElement deleteIssueBtn;
 
     public String getIssueKey(){
+        wait.until(ExpectedConditions.elementToBeClickable(issueKey));
         return issueKey.getText();
     }
 
