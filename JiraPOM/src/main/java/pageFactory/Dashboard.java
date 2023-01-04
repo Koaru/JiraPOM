@@ -71,7 +71,7 @@ public class Dashboard {
     }
 
     public void fillSummary(String data){
-        wait.until(ExpectedConditions.visibilityOf(summaryField));
+        wait.until(ExpectedConditions.elementToBeClickable(summaryField));
         summaryField.sendKeys(data);
     }
 

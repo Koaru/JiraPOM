@@ -20,11 +20,11 @@ public class CreateIssueTest {
     static final String TOUCAN = util.ReadFromConfig.readFromFile("TOUCAN");
     static final String BUG = util.ReadFromConfig.readFromFile("BUG");
     static final String TASK = util.ReadFromConfig.readFromFile("TASK");
-    static final String STORY = util.ReadFromConfig.readFromFile("STROY");
+    static final String STORY = util.ReadFromConfig.readFromFile("STORY");
 
 
-    @BeforeAll
-    public static void setup(){
+    @BeforeEach
+    public void setup(){
         driver = new ChromeDriver();
         login = new Login(driver);
         issue = new Issue(driver);
@@ -138,9 +138,9 @@ public class CreateIssueTest {
         createIssueByProjectAndType(JETI,TASK);
     }
 
-    @AfterAll
+    @AfterEach
     @Order(14)
-    public static void tearDown(){
+    public void tearDown(){
         driver.close();
     }
 }
