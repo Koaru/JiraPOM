@@ -12,14 +12,10 @@ public class DashboardLoginTest {
 
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";
-
-    @BeforeAll
-    public static void setup(){
-        driver = new ChromeDriver();
-        login = new Login(driver);
-    }
     @BeforeEach
     public void init(){
+        driver = new ChromeDriver();
+        login = new Login(driver);
         driver.get(URL);
         driver.manage().window().maximize();
     }
@@ -48,11 +44,6 @@ public class DashboardLoginTest {
 
     @AfterEach
     public void tearDown(){
-        driver.close();
-    }
-
-    @AfterAll
-    public static void quit(){
         driver.quit();
     }
 }

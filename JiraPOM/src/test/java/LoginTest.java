@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,13 +12,10 @@ public class LoginTest {
 
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";
-    @BeforeAll
-    public static void setup(){
-        driver = new ChromeDriver();
-        login = new Login(driver);
-    }
     @BeforeEach
     public void init(){
+        driver = new ChromeDriver();
+        login = new Login(driver);
         driver.get(URL);
         driver.manage().window().maximize();
     }
@@ -46,11 +44,6 @@ public class LoginTest {
 
     @AfterEach
     public void tearDown(){
-        driver.close();
-    }
-
-    @AfterAll
-    public static void quit(){
         driver.quit();
     }
 }

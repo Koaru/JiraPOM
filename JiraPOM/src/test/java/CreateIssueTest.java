@@ -22,16 +22,12 @@ public class CreateIssueTest {
     static final String BUG = util.ReadFromConfig.readFromFile("BUG");
     static final String TASK = util.ReadFromConfig.readFromFile("TASK");
     static final String STORY = util.ReadFromConfig.readFromFile("STORY");
-
-    @BeforeAll
-    public static void setup(){
+    @BeforeEach
+    public void init(){
         driver = new ChromeDriver();
         login = new Login(driver);
         issue = new Issue(driver);
         dashboard = new Dashboard(driver);
-    }
-    @BeforeEach
-    public void init(){
         driver.get(URL);
         driver.manage().window().maximize();
         login.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
@@ -142,13 +138,7 @@ public class CreateIssueTest {
     }
 
     @AfterEach
-    @Order(14)
     public void tearDown(){
-        driver.close();
-    }
-
-    @AfterAll
-    public static void quit(){
         driver.quit();
     }
 }
