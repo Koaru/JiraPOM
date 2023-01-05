@@ -41,26 +41,6 @@ public class BrowseIssueTest {
         browseIssue(issue,expected);
     }
 
-    @Test
-    public void browseIssueHappy(){
-        browseIssue(MTP_ISSUE,MTP_EXPECTED);
-    }
-
-    @Test
-    public void browseIssueCoala(){
-        browseIssue(COALA_ISSUE,COALA_EXPECTED);
-    }
-
-    @Test
-    public void browseIssueToucan(){
-        browseIssue(TOUCAN_ISSUE,TOUCAN_EXPECTED);
-    }
-
-    @Test
-    public void browseIssueJeti(){
-        browseIssue(JETI_ISSUE,JETI_EXPECTED);
-    }
-
     @AfterEach
     public void tearDown(){
         driver.quit();
