@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
@@ -31,6 +33,12 @@ public class BrowseIssueTest {
     public void browseIssue(String issueUrl, String expected){
         driver.get(issueUrl);
         Assertions.assertEquals(issue.getIssueKey(),expected);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/issues.csv")
+    public void browseIssueParameterized(String issue,String expected){
+        browseIssue(issue,expected);
     }
 
     @Test

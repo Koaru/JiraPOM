@@ -132,4 +132,11 @@ public class Dashboard {
         issueTypeField.sendKeys(type);
         createIssueString.click();
     }
+
+    public Boolean isPageLoaded(){
+        wait.until(ExpectedConditions.elementToBeClickable(createBtn));
+        return createBtn.isEnabled();
+    }
+
+
 }
