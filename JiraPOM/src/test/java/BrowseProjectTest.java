@@ -1,3 +1,5 @@
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.junit.jupiter.api.*;
@@ -14,15 +16,6 @@ public class BrowseProjectTest {
     static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
-
-    static final String COALA_PROJECT_URL = util.ReadFromConfig.readFromFile("COALA_BROWSE_PROJECT");
-    static final String TOUCAN_PROJECT_URL = util.ReadFromConfig.readFromFile("TOUCAN_BROWSE_PROJECT");
-    static final String JETI_PROJECT_URL = util.ReadFromConfig.readFromFile("JETI_BROWSE_PROJECT");
-    static final String MTP_PROJECT_URL = util.ReadFromConfig.readFromFile("MTP_BROWSE_PROJECT");
-    static final String COALA_KEY = util.ReadFromConfig.readFromFile("COALA_BROWSE_PROJECT_EXPECTED");
-    static final String TOUCAN_KEY = util.ReadFromConfig.readFromFile("TOUCAN_BROWSE_PROJECT_EXPECTED");
-    static final String JETI_KEY = util.ReadFromConfig.readFromFile("JETI_BROWSE_PROJECT_EXPECTED");
-    static final String MTP_KEY = util.ReadFromConfig.readFromFile("MTP_BROWSE_PROJECT_EXPECTED");
     static final String NOT_EXISTING_PROJECT = util.ReadFromConfig.readFromFile("NOT_EXISTING_PROJECT");
 
     @BeforeEach
@@ -44,25 +37,10 @@ public class BrowseProjectTest {
         Assertions.assertEquals(expected, project.getKey());
     }
 
-    @Test
-    public void browseProjectMTP() {
-        browseProject(MTP_KEY, MTP_PROJECT_URL);
-
-    }
-
-    @Test
-    public void browseProjectCOALA() {
-        browseProject(COALA_KEY, COALA_PROJECT_URL);
-    }
-
-    @Test
-    public void browseProjectTOUCAN() {
-        browseProject(TOUCAN_KEY, TOUCAN_PROJECT_URL);
-    }
-
-    @Test
-    public void browseProjectJETI() {
-        browseProject(JETI_KEY, JETI_PROJECT_URL);
+    @ParameterizedTest
+    @CsvFileSource(resources = "/browseproject.csv")
+    public void browseProjectParameterized(String url,String key){
+        browseProject(key,url);
     }
 
     @Test
