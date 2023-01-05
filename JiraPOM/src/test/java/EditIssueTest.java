@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
@@ -47,6 +49,11 @@ public class EditIssueTest {
         dashboard.fillSummary(SUMMARY_DATA);
         dashboard.clickOnCreateIssueBtn();
         dashboard.clickOnCreatedIssueLink();
+    }
+    @ParameterizedTest
+    @CsvFileSource(resources = "/project.csv")
+    public void editIssueParameterized(String input){
+        editIssue(input);
     }
 
     @Test
