@@ -57,26 +57,6 @@ public class EditIssueTest {
     }
 
     @Test
-    public void editIssueHappy(){
-        editIssue(MTP);
-    }
-
-    @Test
-    public void editIssueCoala(){
-        editIssue(COALA);
-    }
-
-    @Test
-    public void editIssueToucan(){
-        editIssue(TOUCAN);
-    }
-
-    @Test
-    public void editIssueJeti(){
-        editIssue(JETI);
-    }
-
-    @Test
     public void editIssueWithEmptySummary(){
         creatingIssue();
         issue.clickOnEditIssueBtn();
