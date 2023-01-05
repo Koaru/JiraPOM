@@ -27,6 +27,18 @@ public class Issue {
     WebElement deleteBtn;
     @FindBy (id = "delete-issue-submit")
     WebElement deleteIssueBtn;
+    @FindBy (id = "edit-issue")
+    WebElement editIssueBtn;
+    @FindBy (id = "summary")
+    WebElement editIssueSummary;
+    @FindBy (id = "summary-val")
+    WebElement summary;
+    @FindBy (id = "edit-issue-submit")
+    WebElement editBtn;
+    @FindBy (xpath = "//div[@role='alert']")
+    WebElement editErrorMsg;
+    @FindBy (xpath = "//button[normalize-space()='Cancel']")
+    WebElement cancelBtn;
 
     public String getIssueKey(){
         wait.until(ExpectedConditions.elementToBeClickable(issueKey));
@@ -38,15 +50,54 @@ public class Issue {
     }
 
     public void clickOnMoreBtn(){
+        wait.until(ExpectedConditions.elementToBeClickable(moreBtn));
         moreBtn.click();
     }
 
+    public void clickOnEditIssueBtn(){
+        wait.until(ExpectedConditions.elementToBeClickable(editIssueBtn));
+        editIssueBtn.click();
+    }
+
     public void clickOnDeleteBtn(){
+        wait.until(ExpectedConditions.elementToBeClickable(moreBtn));
         moreBtn.click();
         wait.until(ExpectedConditions.elementToBeClickable(deleteBtn));
         deleteBtn.click();
         wait.until(ExpectedConditions.elementToBeClickable(deleteIssueBtn));
         deleteIssueBtn.click();
+    }
+
+    public void editSummary(String text){
+        wait.until(ExpectedConditions.elementToBeClickable(editIssueSummary));
+        editIssueSummary.clear();
+        editIssueSummary.sendKeys(text);
+    }
+
+    public String getSummary(){
+        wait.until(ExpectedConditions.elementToBeClickable(summary));
+        return summary.getText();
+    }
+
+    public void clickOnUpdateBtn(){
+        wait.until((ExpectedConditions.elementToBeClickable(editBtn)));
+        editBtn.click();
+    }
+
+    public Boolean editIssueErrorIsPresent(){
+        wait.until(ExpectedConditions.visibilityOf(editErrorMsg));
+        return editErrorMsg.isDisplayed();
+    }
+
+    public void clickOnCancelBtn(){
+        wait.until(ExpectedConditions.elementToBeClickable(cancelBtn));
+        cancelBtn.click();
+    }
+
+    public void clickOnCancelButtonAndAcceptAlert(){
+        wait.until(ExpectedConditions.elementToBeClickable(cancelBtn));
+        cancelBtn.click();
+        driver.switchTo().alert().accept();
     }
 
 }
