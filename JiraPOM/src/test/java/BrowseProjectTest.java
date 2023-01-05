@@ -1,17 +1,14 @@
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
 public class BrowseProjectTest {
-
     static WebDriver driver;
     static Login login;
     static Project project;
-
     static Dashboard dashboard;
     static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");

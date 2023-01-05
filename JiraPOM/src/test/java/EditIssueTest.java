@@ -14,10 +14,6 @@ public class EditIssueTest {
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
     static final String SUMMARY_DATA = util.ReadFromConfig.readFromFile("SUMMARY");
     static final String EDIT_DATA = util.ReadFromConfig.readFromFile("EDIT_ISSUE_SUMMARY");
-    static final String COALA = util.ReadFromConfig.readFromFile("COALA");
-    static final String MTP = util.ReadFromConfig.readFromFile("MTP");
-    static final String JETI = util.ReadFromConfig.readFromFile("JETI");
-    static final String TOUCAN = util.ReadFromConfig.readFromFile("TOUCAN");
     @BeforeEach
     public void init(){
         driver = new ChromeDriver();

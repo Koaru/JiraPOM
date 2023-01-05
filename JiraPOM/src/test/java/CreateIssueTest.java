@@ -1,5 +1,6 @@
-import com.beust.jcommander.Parameter;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
@@ -15,13 +16,6 @@ public class CreateIssueTest {
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
     static final String SUMMARY_DATA = util.ReadFromConfig.readFromFile("SUMMARY");
     static final String NON_EXISTING_PROJECT = util.ReadFromConfig.readFromFile("NON_EXISTING_PROJECT");
-    static final String COALA = util.ReadFromConfig.readFromFile("COALA");
-    static final String MTP = util.ReadFromConfig.readFromFile("MTP");
-    static final String JETI = util.ReadFromConfig.readFromFile("JETI");
-    static final String TOUCAN = util.ReadFromConfig.readFromFile("TOUCAN");
-    static final String BUG = util.ReadFromConfig.readFromFile("BUG");
-    static final String TASK = util.ReadFromConfig.readFromFile("TASK");
-    static final String STORY = util.ReadFromConfig.readFromFile("STORY");
     @BeforeEach
     public void init(){
         driver = new ChromeDriver();
@@ -32,7 +26,6 @@ public class CreateIssueTest {
         driver.manage().window().maximize();
         login.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
     }
-
 
     @Test
     @Order(1)
@@ -90,53 +83,10 @@ public class CreateIssueTest {
         Assertions.assertTrue(dashboard.isDeleteIssueValidate());
     }
 
-    @Test
-    @Order(5)
-    public void createIssueCoalaAndBug(){
-        createIssueByProjectAndType(COALA,BUG);
-    }
-
-    @Test
-    @Order(6)
-    public void createIssueCoalaAndStory(){
-        createIssueByProjectAndType(COALA,STORY);
-    }
-
-    @Test
-    @Order(7)
-    public void createIssueCoalaAndTask(){
-        createIssueByProjectAndType(COALA,TASK);
-    }
-
-    @Test
-    @Order(8)
-    public void createIssueToucanAndBug(){
-        createIssueByProjectAndType(TOUCAN,BUG);
-    }
-    @Test
-    @Order(9)
-    public void createIssueToucanAndStory(){
-        createIssueByProjectAndType(TOUCAN,STORY);
-    }
-    @Test
-    @Order(10)
-    public void createIssueToucanAndTask(){
-        createIssueByProjectAndType(TOUCAN,TASK);
-    }
-    @Test
-    @Order(11)
-    public void createIssueJetiAndBug(){
-        createIssueByProjectAndType(JETI,BUG);
-    }
-    @Test
-    @Order(12)
-    public void createIssueJetiAndStory(){
-        createIssueByProjectAndType(JETI,STORY);
-    }
-    @Test
-    @Order(13)
-    public void createIssueJetiAndTask(){
-        createIssueByProjectAndType(JETI,TASK);
+    @ParameterizedTest
+    @CsvFileSource(resources = "/createissue.csv")
+    public void createIssueParameterized(String project,String type){
+        createIssueByProjectAndType(project,type);
     }
 
     @AfterEach

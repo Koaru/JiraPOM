@@ -11,14 +11,6 @@ public class BrowseIssueTest {
     static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
-    static final String MTP_ISSUE = util.ReadFromConfig.readFromFile("MTP_BROWSE_ISSUE");
-    static final String COALA_ISSUE = util.ReadFromConfig.readFromFile("COALA_BROWSE_ISSUE");
-    static final String TOUCAN_ISSUE = util.ReadFromConfig.readFromFile("TOUCAN_BROWSE_ISSUE");
-    static final String JETI_ISSUE = util.ReadFromConfig.readFromFile("JETI_BROWSE_ISSUE");
-    static final String MTP_EXPECTED = util.ReadFromConfig.readFromFile("MTP_BROWSE_ISSUE_EXPECTED");
-    static final String COALA_EXPECTED = util.ReadFromConfig.readFromFile("COALA_BROWSE_ISSUE_EXPECTED");
-    static final String TOUCAN_EXPECTED = util.ReadFromConfig.readFromFile("TOUCAN_BROWSE_ISSUE_EXPECTED");
-    static final String JETI_EXPECTED = util.ReadFromConfig.readFromFile("JETI_BROWSE_ISSUE_EXPECTED");
 
     @BeforeEach
     public void init(){
