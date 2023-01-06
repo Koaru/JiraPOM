@@ -5,11 +5,11 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
-public class BrowseProjectTest {
+public class BrowseProjectTestPage {
     static WebDriver driver;
-    static Login login;
-    static Project project;
-    static Dashboard dashboard;
+    static LoginPage loginPage;
+    static ProjectPage projectPage;
+    static DashboardPage dashboardPage;
     static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
@@ -18,20 +18,20 @@ public class BrowseProjectTest {
     @BeforeEach
     public void init() {
         driver = new ChromeDriver();
-        login = new Login(driver);
-        project = new Project(driver);
-        dashboard = new Dashboard(driver);
+        loginPage = new LoginPage(driver);
+        projectPage = new ProjectPage(driver);
+        dashboardPage = new DashboardPage(driver);
         driver.get(URL);
         driver.manage().window().maximize();
-        login.loggingInInDashboard(VALID_USERNAME, VALID_PASSWORD);
+        loginPage.loggingInInDashboard(VALID_USERNAME, VALID_PASSWORD);
     }
 
     public void browseProject(String expected, String URL) {
         //System.out.println(dashboard.isPageLoaded());
-        if (dashboard.isPageLoaded()) {
+        if (dashboardPage.isPageLoaded()) {
             driver.get(URL);
         }
-        Assertions.assertEquals(expected, project.getKey());
+        Assertions.assertEquals(expected, projectPage.getKey());
     }
 
     @ParameterizedTest
@@ -42,20 +42,20 @@ public class BrowseProjectTest {
 
     @Test
     public void browseNonExistingProject() {
-        if (dashboard.isPageLoaded()) {
+        if (dashboardPage.isPageLoaded()) {
             driver.get(NOT_EXISTING_PROJECT);
         }
-        String errorMessage = project.getErrorMessage();
+        String errorMessage = projectPage.getErrorMessage();
         Assertions.assertEquals("You can't view this project", errorMessage);
 
     }
 
     @Test
     public void browseProjectWithoutPermission() {
-        if (dashboard.isPageLoaded()) {
+        if (dashboardPage.isPageLoaded()) {
             driver.get(NOT_EXISTING_PROJECT);
         }
-        String errorMessage = project.getErrorMessage();
+        String errorMessage = projectPage.getErrorMessage();
         Assertions.assertEquals("You can't view this project", errorMessage);
     }
 

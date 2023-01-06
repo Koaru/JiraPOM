@@ -9,11 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Issue {
+public class IssuePage {
     WebDriver driver;
     WebDriverWait wait;
 
-    public Issue(WebDriver driver) {
+    public IssuePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         PageFactory.initElements(driver, this);
@@ -99,5 +99,4 @@ public class Issue {
         cancelBtn.click();
         driver.switchTo().alert().accept();
     }
-
 }

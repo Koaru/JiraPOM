@@ -1,11 +1,10 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
-public class LoginTest {
+public class LoginPageTest {
     static WebDriver driver;
-    static Login login;
+    static LoginPage loginPage;
     static final String URL = "https://jira-auto.codecool.metastage.net/login.jsp";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
@@ -15,31 +14,31 @@ public class LoginTest {
     @BeforeEach
     public void init(){
         driver = new ChromeDriver();
-        login = new Login(driver);
+        loginPage = new LoginPage(driver);
         driver.get(URL);
         driver.manage().window().maximize();
     }
 
     @Test
     public void validLogin(){
-        Dashboard dashboard = new Dashboard(driver);
-        Profile profile = new Profile(driver);
-        login.loggingIn(VALID_USERNAME,VALID_PASSWORD);
-        dashboard.clickOnProfileBtn();
-        dashboard.clickOnProfile();
-        Assertions.assertEquals(VALID_USERNAME,profile.getUsername());
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+        loginPage.loggingIn(VALID_USERNAME,VALID_PASSWORD);
+        dashboardPage.clickOnProfileBtn();
+        dashboardPage.clickOnProfile();
+        Assertions.assertEquals(VALID_USERNAME, profilePage.getUsername());
     }
 
     @Test
     public void invalidLoginWithInvalidUsername(){
-        login.loggingIn(INVALID_USERNAME,VALID_PASSWORD);
-        Assertions.assertTrue(login.usernameErrorIsPresent());
+        loginPage.loggingIn(INVALID_USERNAME,VALID_PASSWORD);
+        Assertions.assertTrue(loginPage.usernameErrorIsPresent());
     }
 
     @Test
     public void invalidLoginWithInvalidPassword(){
-        login.loggingIn(VALID_USERNAME,INVALID_PASSWORD);
-        Assertions.assertTrue(login.usernameErrorIsPresent());
+        loginPage.loggingIn(VALID_USERNAME,INVALID_PASSWORD);
+        Assertions.assertTrue(loginPage.usernameErrorIsPresent());
     }
 
     @AfterEach

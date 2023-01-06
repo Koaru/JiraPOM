@@ -3,9 +3,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
-public class DashboardLoginTest {
+public class DashboardPageLoginTestPage {
     static WebDriver driver;
-    static Login login;
+    static LoginPage loginPage;
     static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
@@ -15,31 +15,31 @@ public class DashboardLoginTest {
     @BeforeEach
     public void init(){
         driver = new ChromeDriver();
-        login = new Login(driver);
+        loginPage = new LoginPage(driver);
         driver.get(URL);
         driver.manage().window().maximize();
     }
 
     @Test
     public void validLogin(){
-        Dashboard dashboard = new Dashboard(driver);
-        Profile profile = new Profile(driver);
-        login.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
-        dashboard.clickOnProfileBtn();
-        dashboard.clickOnProfile();
-        Assertions.assertEquals(VALID_USERNAME,profile.getUsername());
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+        loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
+        dashboardPage.clickOnProfileBtn();
+        dashboardPage.clickOnProfile();
+        Assertions.assertEquals(VALID_USERNAME, profilePage.getUsername());
     }
 
     @Test
     public void invalidLoginWithInvalidUsername(){
-        login.loggingInInDashboard(INVALID_USERNAME,VALID_PASSWORD);
-        Assertions.assertTrue(login.usernameErrorIsPresent());
+        loginPage.loggingInInDashboard(INVALID_USERNAME,VALID_PASSWORD);
+        Assertions.assertTrue(loginPage.usernameErrorIsPresent());
     }
 
     @Test
     public void invalidLoginWithInvalidPassword(){
-        login.loggingInInDashboard(VALID_USERNAME,INVALID_PASSWORD);
-        Assertions.assertTrue(login.usernameErrorIsPresent());
+        loginPage.loggingInInDashboard(VALID_USERNAME,INVALID_PASSWORD);
+        Assertions.assertTrue(loginPage.usernameErrorIsPresent());
     }
 
     @AfterEach

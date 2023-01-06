@@ -6,11 +6,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CreateIssueTest {
+public class CreateIssueTestPage {
     static WebDriver driver;
-    static Login login;
-    static Dashboard dashboard;
-    static Issue issue;
+    static LoginPage loginPage;
+    static DashboardPage dashboardPage;
+    static IssuePage issuePage;
     static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
@@ -19,34 +19,34 @@ public class CreateIssueTest {
     @BeforeEach
     public void init(){
         driver = new ChromeDriver();
-        login = new Login(driver);
-        issue = new Issue(driver);
-        dashboard = new Dashboard(driver);
+        loginPage = new LoginPage(driver);
+        issuePage = new IssuePage(driver);
+        dashboardPage = new DashboardPage(driver);
         driver.get(URL);
         driver.manage().window().maximize();
-        login.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
+        loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
     }
 
     @Test
     @Order(1)
     public void createIssueHappy(){
-        dashboard.clickOnCreateBtn();
-        dashboard.fillSummary(SUMMARY_DATA);
-        dashboard.clickOnCreateIssueBtn();
-        String actualResult = dashboard.getIssueText();
-        dashboard.clickOnCreatedIssueLink();
-        String expectedResult = issue.getIssueKey() + " - " + SUMMARY_DATA;
+        dashboardPage.clickOnCreateBtn();
+        dashboardPage.fillSummary(SUMMARY_DATA);
+        dashboardPage.clickOnCreateIssueBtn();
+        String actualResult = dashboardPage.getIssueText();
+        dashboardPage.clickOnCreatedIssueLink();
+        String expectedResult = issuePage.getIssueKey() + " - " + SUMMARY_DATA;
         Assertions.assertEquals(actualResult,expectedResult);
-        issue.clickOnDeleteBtn();
-        Assertions.assertTrue(dashboard.isDeleteIssueValidate());
+        issuePage.clickOnDeleteBtn();
+        Assertions.assertTrue(dashboardPage.isDeleteIssueValidate());
     }
 
     @Test
     @Order(2)
     public void createIssueCancel(){
-        dashboard.clickOnCreateBtn();
-        Boolean isActive = dashboard.isModalWindowsDisplayed();
-        dashboard.clickOnCancelBtn();
+        dashboardPage.clickOnCreateBtn();
+        Boolean isActive = dashboardPage.isModalWindowsDisplayed();
+        dashboardPage.clickOnCancelBtn();
         isActive = !isActive;
         Assertions.assertFalse(isActive);
     }
@@ -54,33 +54,33 @@ public class CreateIssueTest {
     @Test
     @Order(3)
     public void createIssueWithEmptySummaryField(){
-        dashboard.clickOnCreateBtn();
-        dashboard.clickOnCreateIssueBtn();
-        Assertions.assertTrue(dashboard.isSummaryFieldEmpty());
+        dashboardPage.clickOnCreateBtn();
+        dashboardPage.clickOnCreateIssueBtn();
+        Assertions.assertTrue(dashboardPage.isSummaryFieldEmpty());
     }
 
     @Test
     @Order(4)
     public void createIssueWithNonExistingProject(){
-        dashboard.clickOnCreateBtn();
-        String beforeText = dashboard.getProjectFieldText();
-        dashboard.modifyProjectField(NON_EXISTING_PROJECT);
-        String afterText = dashboard.getProjectFieldText();
+        dashboardPage.clickOnCreateBtn();
+        String beforeText = dashboardPage.getProjectFieldText();
+        dashboardPage.modifyProjectField(NON_EXISTING_PROJECT);
+        String afterText = dashboardPage.getProjectFieldText();
         Assertions.assertEquals(beforeText,afterText);
     }
 
     public void createIssueByProjectAndType(String project, String type){
-        dashboard.clickOnCreateBtn();
-        dashboard.modifyProjectField(project);
-        dashboard.modifyTypeField(type);
-        dashboard.fillSummary(SUMMARY_DATA);
-        dashboard.clickOnCreateIssueBtn();
-        String actualResult = dashboard.getIssueText();
-        dashboard.clickOnCreatedIssueLink();
-        String expectedResult = issue.getIssueKey() + " - " + SUMMARY_DATA;
+        dashboardPage.clickOnCreateBtn();
+        dashboardPage.modifyProjectField(project);
+        dashboardPage.modifyTypeField(type);
+        dashboardPage.fillSummary(SUMMARY_DATA);
+        dashboardPage.clickOnCreateIssueBtn();
+        String actualResult = dashboardPage.getIssueText();
+        dashboardPage.clickOnCreatedIssueLink();
+        String expectedResult = issuePage.getIssueKey() + " - " + SUMMARY_DATA;
         Assertions.assertEquals(actualResult,expectedResult);
-        issue.clickOnDeleteBtn();
-        Assertions.assertTrue(dashboard.isDeleteIssueValidate());
+        issuePage.clickOnDeleteBtn();
+        Assertions.assertTrue(dashboardPage.isDeleteIssueValidate());
     }
 
     @ParameterizedTest

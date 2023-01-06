@@ -9,11 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Dashboard {
+public class DashboardPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    public Dashboard(WebDriver driver) {
+    public DashboardPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         PageFactory.initElements(driver, this);

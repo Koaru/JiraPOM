@@ -4,7 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 public class LogoutTest {
     static WebDriver driver;
-    static Login login;
+    static LoginPage loginPage;
     static final String URL = "https://jira-auto.codecool.metastage.net/login.jsp";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
@@ -13,18 +13,18 @@ public class LogoutTest {
     @BeforeEach
     public void init(){
         driver = new ChromeDriver();
-        login = new Login(driver);
+        loginPage = new LoginPage(driver);
         driver.get(URL);
         driver.manage().window().maximize();
-        login.loggingIn(VALID_USERNAME,VALID_PASSWORD);
+        loginPage.loggingIn(VALID_USERNAME,VALID_PASSWORD);
     }
 
     @Test
     public void logout(){
-        Dashboard dashboard = new Dashboard(driver);
-        dashboard.clickOnProfileBtn();
-        dashboard.clickOnLogoutBtn();
-        Assertions.assertEquals(dashboard.logoutMessage(),EXPECTED_MESSAGE);
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage.clickOnProfileBtn();
+        dashboardPage.clickOnLogoutBtn();
+        Assertions.assertEquals(dashboardPage.logoutMessage(),EXPECTED_MESSAGE);
     }
 
     @AfterEach
