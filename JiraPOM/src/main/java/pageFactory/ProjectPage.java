@@ -10,16 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ProjectPage {
-
-    WebDriver driver;
-    WebDriverWait wait;
+public class ProjectPage extends BasePage {
 
 
-    public ProjectPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        PageFactory.initElements(driver, this);
+
+    public ProjectPage() {
+        super();
     }
 
     @FindBy (css = "body > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > main:nth-child(1) > section:nth-child(2) > div:nth-child(1) > div:nth-child(2) > dl:nth-child(1) > dd:nth-child(4)")

@@ -14,16 +14,16 @@ public class DashboardPageLoginTestPage {
     final String INVALID_PASSWORD = "invalid-password";
     @BeforeEach
     public void init(){
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
+
+        loginPage = new LoginPage();
         driver.get(URL);
         driver.manage().window().maximize();
     }
 
     @Test
     public void validLogin(){
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
+        DashboardPage dashboardPage = new DashboardPage();
+        ProfilePage profilePage = new ProfilePage();
         loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
         dashboardPage.clickOnProfileBtn();
         dashboardPage.clickOnProfile();

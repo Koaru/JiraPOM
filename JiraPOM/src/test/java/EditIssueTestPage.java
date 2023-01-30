@@ -16,10 +16,10 @@ public class EditIssueTestPage {
     static final String EDIT_DATA = util.ReadFromConfig.readFromFile("EDIT_ISSUE_SUMMARY");
     @BeforeEach
     public void init(){
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-        issuePage = new IssuePage(driver);
-        dashboardPage = new DashboardPage(driver);
+
+        loginPage = new LoginPage();
+        issuePage = new IssuePage();
+        dashboardPage = new DashboardPage();
         driver.get(URL);
         driver.manage().window().maximize();
         loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);

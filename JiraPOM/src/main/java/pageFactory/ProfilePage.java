@@ -8,14 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ProfilePage {
-    WebDriver driver;
-    WebDriverWait wait;
+public class ProfilePage extends BasePage{
 
-    public ProfilePage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        PageFactory.initElements(driver, this);
+    public ProfilePage() {
+        super();
     }
 
     @FindBy (id = "up-d-username")

@@ -18,10 +18,10 @@ public class CreateIssueTestPage {
     static final String NON_EXISTING_PROJECT = util.ReadFromConfig.readFromFile("NON_EXISTING_PROJECT");
     @BeforeEach
     public void init(){
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-        issuePage = new IssuePage(driver);
-        dashboardPage = new DashboardPage(driver);
+
+        loginPage = new LoginPage();
+        issuePage = new IssuePage();
+        dashboardPage = new DashboardPage();
         driver.get(URL);
         driver.manage().window().maximize();
         loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);

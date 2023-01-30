@@ -17,10 +17,10 @@ public class BrowseProjectTestPage {
 
     @BeforeEach
     public void init() {
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-        projectPage = new ProjectPage(driver);
-        dashboardPage = new DashboardPage(driver);
+
+        loginPage = new LoginPage();
+        projectPage = new ProjectPage();
+        dashboardPage = new DashboardPage();
         driver.get(URL);
         driver.manage().window().maximize();
         loginPage.loggingInInDashboard(VALID_USERNAME, VALID_PASSWORD);

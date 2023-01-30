@@ -12,8 +12,8 @@ public class LogoutTest {
             "Didn't mean to log out? Log in again.";
     @BeforeEach
     public void init(){
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
+
+        loginPage = new LoginPage();
         driver.get(URL);
         driver.manage().window().maximize();
         loginPage.loggingIn(VALID_USERNAME,VALID_PASSWORD);
@@ -21,7 +21,7 @@ public class LogoutTest {
 
     @Test
     public void logout(){
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.clickOnProfileBtn();
         dashboardPage.clickOnLogoutBtn();
         Assertions.assertEquals(dashboardPage.logoutMessage(),EXPECTED_MESSAGE);

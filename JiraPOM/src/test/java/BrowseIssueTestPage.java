@@ -14,9 +14,8 @@ public class BrowseIssueTestPage {
 
     @BeforeEach
     public void init(){
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-        issuePage = new IssuePage(driver);
+        loginPage = new LoginPage();
+        issuePage = new IssuePage();
         driver.get(URL);
         driver.manage().window().maximize();
         loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);

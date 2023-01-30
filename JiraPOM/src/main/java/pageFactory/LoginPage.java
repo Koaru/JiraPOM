@@ -9,14 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginPage {
-    WebDriver driver;
-    WebDriverWait wait;
+public class LoginPage extends BasePage{
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        PageFactory.initElements(driver, this);
+
+    public LoginPage() {
+        super();
     }
 
     @FindBy (id = "login-form-username")

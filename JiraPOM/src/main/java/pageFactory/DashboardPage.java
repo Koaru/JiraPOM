@@ -9,14 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class DashboardPage {
-    WebDriver driver;
-    WebDriverWait wait;
+public class DashboardPage extends BasePage {
 
-    public DashboardPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        PageFactory.initElements(driver, this);
+
+    public DashboardPage() {
+        super();
     }
 
     @FindBy (id = "header-details-user-fullname")
