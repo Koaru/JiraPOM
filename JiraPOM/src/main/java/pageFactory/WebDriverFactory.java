@@ -19,7 +19,7 @@ public class WebDriverFactory {
         return webDriver;
     }
 
-    public void shutDown() {
+    public static void shutDown() {
         webDriver.quit();
         webDriver = null;
     }

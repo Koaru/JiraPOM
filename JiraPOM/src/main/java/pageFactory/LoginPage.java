@@ -60,4 +60,9 @@ public class LoginPage extends BasePage{
         setPassword(pwd);
         clickOnDashboardLoginBtn();
     }
+
+    public void navigateToLoginPage() {
+        driver.get("https://jira-auto.codecool.metastage.net/login.jsp");
+    }
+
 }

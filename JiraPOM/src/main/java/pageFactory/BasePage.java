@@ -13,8 +13,13 @@ public class BasePage {
 
     public BasePage() {
         this.driver = WebDriverFactory.createWebDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        driver.manage().window().maximize();
         PageFactory.initElements(driver, this);
+    }
+
+    public void quit () {
+        WebDriverFactory.shutDown();
     }
 
 }
