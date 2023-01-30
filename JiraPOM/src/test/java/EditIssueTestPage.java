@@ -8,8 +8,8 @@ public class EditIssueTestPage {
     static DashboardPage dashboardPage;
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
-    static final String SUMMARY_DATA = "SUMMARY";
-    static final String EDIT_DATA = "EDIT_ISSUE_SUMMARY";
+    static final String SUMMARY_DATA = "Test summary data.";
+    static final String EDIT_DATA = "Edited summary!";
     @BeforeEach
     public void init(){
 

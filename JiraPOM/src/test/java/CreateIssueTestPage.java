@@ -10,8 +10,8 @@ public class CreateIssueTestPage {
     static IssuePage issuePage;
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
-    static final String SUMMARY_DATA = "SUMMARY";
-    static final String NON_EXISTING_PROJECT = "NON_EXISTING_PROJECT";
+    static final String SUMMARY_DATA = "Test summary data.";
+    static final String NON_EXISTING_PROJECT = "a";
     @BeforeEach
     public void init(){
         loginPage = new LoginPage();
