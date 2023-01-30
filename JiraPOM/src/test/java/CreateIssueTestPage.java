@@ -1,29 +1,23 @@
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CreateIssueTestPage {
-    static WebDriver driver;
     static LoginPage loginPage;
     static DashboardPage dashboardPage;
     static IssuePage issuePage;
-    static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
     static final String SUMMARY_DATA = util.ReadFromConfig.readFromFile("SUMMARY");
     static final String NON_EXISTING_PROJECT = util.ReadFromConfig.readFromFile("NON_EXISTING_PROJECT");
     @BeforeEach
     public void init(){
-
         loginPage = new LoginPage();
         issuePage = new IssuePage();
         dashboardPage = new DashboardPage();
-        driver.get(URL);
-        driver.manage().window().maximize();
+        loginPage.navigateToDashboardLoginPage();
         loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
     }
 
@@ -91,6 +85,6 @@ public class CreateIssueTestPage {
 
     @AfterEach
     public void tearDown(){
-        driver.quit();
+        loginPage.quit();
     }
 }

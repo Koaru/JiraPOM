@@ -1,12 +1,9 @@
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
 public class DashboardPageLoginTestPage {
-    static WebDriver driver;
     static LoginPage loginPage;
-    static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
+
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
 
@@ -14,10 +11,8 @@ public class DashboardPageLoginTestPage {
     final String INVALID_PASSWORD = "invalid-password";
     @BeforeEach
     public void init(){
-
         loginPage = new LoginPage();
-        driver.get(URL);
-        driver.manage().window().maximize();
+        loginPage.navigateToDashboardLoginPage();
     }
 
     @Test
@@ -44,6 +39,6 @@ public class DashboardPageLoginTestPage {
 
     @AfterEach
     public void tearDown(){
-        driver.quit();
+        loginPage.quit();
     }
 }

@@ -20,8 +20,7 @@ public class EditIssueTestPage {
         loginPage = new LoginPage();
         issuePage = new IssuePage();
         dashboardPage = new DashboardPage();
-        driver.get(URL);
-        driver.manage().window().maximize();
+        loginPage.navigateToDashboardLoginPage();
         loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);
     }
 
@@ -81,8 +80,8 @@ public class EditIssueTestPage {
         issuePage.clickOnDeleteBtn();
     }
 
-    @AfterEach
+   @AfterEach
     public void tearDown(){
-        driver.quit();
+        loginPage.quit();
     }
 }

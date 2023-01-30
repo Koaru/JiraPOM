@@ -24,7 +24,7 @@ public class LoginPage extends BasePage{
     WebElement dashboardLoginBtn;
     @FindBy (id = "login-form-submit")
     WebElement loginBtn;
-    @FindBy (id = "usernameerror")
+    @FindBy (xpath = "//div[@class='aui-message aui-message-error']")
     WebElement usernameError;
 
 
@@ -63,6 +63,9 @@ public class LoginPage extends BasePage{
 
     public void navigateToLoginPage() {
         driver.get("https://jira-auto.codecool.metastage.net/login.jsp");
+    }
+    public void navigateToDashboardLoginPage() {
+        driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
     }
 
 }

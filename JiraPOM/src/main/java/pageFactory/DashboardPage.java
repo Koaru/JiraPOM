@@ -48,6 +48,7 @@ public class DashboardPage extends BasePage {
     WebElement modalWindow;
 
     public void clickOnProfileBtn(){
+        wait.until(ExpectedConditions.elementToBeClickable(profileBtn));
         profileBtn.click();
     }
 
