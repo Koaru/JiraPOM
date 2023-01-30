@@ -1,19 +1,15 @@
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 public class EditIssueTestPage {
-    static WebDriver driver;
     static LoginPage loginPage;
     static IssuePage issuePage;
     static DashboardPage dashboardPage;
-    static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
-    static final String SUMMARY_DATA = util.ReadFromConfig.readFromFile("SUMMARY");
-    static final String EDIT_DATA = util.ReadFromConfig.readFromFile("EDIT_ISSUE_SUMMARY");
+    static final String SUMMARY_DATA = "SUMMARY";
+    static final String EDIT_DATA = "EDIT_ISSUE_SUMMARY";
     @BeforeEach
     public void init(){
 

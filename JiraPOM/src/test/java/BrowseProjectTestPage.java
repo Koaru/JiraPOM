@@ -1,35 +1,28 @@
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.WebDriver;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.*;
 
 public class BrowseProjectTestPage {
-    static WebDriver driver;
     static LoginPage loginPage;
     static ProjectPage projectPage;
     static DashboardPage dashboardPage;
-    static final String URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
     static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
-    static final String NOT_EXISTING_PROJECT = util.ReadFromConfig.readFromFile("NOT_EXISTING_PROJECT");
+
 
     @BeforeEach
     public void init() {
-
         loginPage = new LoginPage();
         projectPage = new ProjectPage();
         dashboardPage = new DashboardPage();
-        driver.get(URL);
-        driver.manage().window().maximize();
+        loginPage.navigateToDashboardLoginPage();
         loginPage.loggingInInDashboard(VALID_USERNAME, VALID_PASSWORD);
     }
 
     public void browseProject(String expected, String URL) {
-        //System.out.println(dashboard.isPageLoaded());
         if (dashboardPage.isPageLoaded()) {
-            driver.get(URL);
+            dashboardPage.navigate(URL);
         }
         Assertions.assertEquals(expected, projectPage.getKey());
     }
@@ -43,7 +36,7 @@ public class BrowseProjectTestPage {
     @Test
     public void browseNonExistingProject() {
         if (dashboardPage.isPageLoaded()) {
-            driver.get(NOT_EXISTING_PROJECT);
+            dashboardPage.navigateToNonExistentProject();
         }
         String errorMessage = projectPage.getErrorMessage();
         Assertions.assertEquals("You can't view this project", errorMessage);
@@ -53,7 +46,7 @@ public class BrowseProjectTestPage {
     @Test
     public void browseProjectWithoutPermission() {
         if (dashboardPage.isPageLoaded()) {
-            driver.get(NOT_EXISTING_PROJECT);
+            dashboardPage.navigateToWithoutPermissionProject();
         }
         String errorMessage = projectPage.getErrorMessage();
         Assertions.assertEquals("You can't view this project", errorMessage);
@@ -61,7 +54,7 @@ public class BrowseProjectTestPage {
 
     @AfterEach
     public void tearDown() {
-        driver.quit();
+        loginPage.quit();
     }
 }
 

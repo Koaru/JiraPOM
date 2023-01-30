@@ -136,5 +136,15 @@ public class DashboardPage extends BasePage {
         return createBtn.isEnabled();
     }
 
+    public void navigateToNonExistentProject() {
+        driver.get("https://jira-auto.codecool.metastage.net/projects/MTP2/summary");
+    }
 
+    public void navigateToWithoutPermissionProject () {
+        driver.get("https://jira-auto.codecool.metastage.net/projects/MTP3/summary");
+    }
+
+    public void navigate(String url) {
+        driver.get(url);
+    }
 }

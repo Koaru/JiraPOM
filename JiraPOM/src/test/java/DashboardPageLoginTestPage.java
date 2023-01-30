@@ -37,6 +37,7 @@ public class DashboardPageLoginTestPage {
         Assertions.assertTrue(loginPage.usernameErrorIsPresent());
     }
 
+
     @AfterEach
     public void tearDown(){
         loginPage.quit();
