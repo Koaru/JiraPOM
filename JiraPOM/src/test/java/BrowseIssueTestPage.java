@@ -5,8 +5,8 @@ import pageFactory.*;
 public class BrowseIssueTestPage {
     static LoginPage loginPage;
     static IssuePage issuePage;
-    static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
-    static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
+    static final String VALID_USERNAME = System.getenv("USERNAME");
+    static final String VALID_PASSWORD = System.getenv("PASSWORD");
 
     @BeforeEach
     public void init(){

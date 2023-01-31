@@ -6,8 +6,8 @@ public class EditIssueTestPage {
     static LoginPage loginPage;
     static IssuePage issuePage;
     static DashboardPage dashboardPage;
-    static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
-    static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
+    static final String VALID_USERNAME = System.getenv("USERNAME");
+    static final String VALID_PASSWORD = System.getenv("PASSWORD");
     static final String SUMMARY_DATA = "Test summary data.";
     static final String EDIT_DATA = "Edited summary!";
     @BeforeEach

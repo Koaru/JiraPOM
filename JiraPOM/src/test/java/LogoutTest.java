@@ -4,8 +4,8 @@ public class LogoutTest {
 
     static LoginPage loginPage;
 
-    static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
-    static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
+    static final String VALID_USERNAME = System.getenv("USERNAME");
+    static final String VALID_PASSWORD = System.getenv("PASSWORD");
     final String EXPECTED_MESSAGE = "You are now logged out. Any automatic login has also been stopped.\n" +
             "Didn't mean to log out? Log in again.";
     @BeforeEach

@@ -4,8 +4,8 @@ public class LoginPageTest {
 
     static LoginPage loginPage;
 
-    static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
-    static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
+    static final String VALID_USERNAME = System.getenv("USERNAME");
+    static final String VALID_PASSWORD = System.getenv("PASSWORD");
 
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";

@@ -8,8 +8,8 @@ public class CreateIssueTestPage {
     static LoginPage loginPage;
     static DashboardPage dashboardPage;
     static IssuePage issuePage;
-    static final String VALID_USERNAME = util.ReadFromConfig.readFromFile("VALID_USERNAME");
-    static final String VALID_PASSWORD = util.ReadFromConfig.readFromFile("VALID_PASSWORD");
+    static final String VALID_USERNAME = System.getenv("USERNAME");
+    static final String VALID_PASSWORD = System.getenv("PASSWORD");
     static final String SUMMARY_DATA = "Test summary data.";
     static final String NON_EXISTING_PROJECT = "a";
     @BeforeEach
