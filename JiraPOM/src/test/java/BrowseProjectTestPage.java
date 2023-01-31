@@ -7,8 +7,8 @@ public class BrowseProjectTestPage {
     static LoginPage loginPage;
     static ProjectPage projectPage;
     static DashboardPage dashboardPage;
-    static final String VALID_USERNAME = System.getenv("USERNAME");
-    static final String VALID_PASSWORD = System.getenv("PASSWORD");
+    static final String VALID_USERNAME = System.getProperty("username");
+    static final String VALID_PASSWORD = System.getProperty("password");
 
 
     @BeforeEach

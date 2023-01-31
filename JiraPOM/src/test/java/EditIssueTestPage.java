@@ -6,8 +6,8 @@ public class EditIssueTestPage {
     static LoginPage loginPage;
     static IssuePage issuePage;
     static DashboardPage dashboardPage;
-    static final String VALID_USERNAME = System.getenv("USERNAME");
-    static final String VALID_PASSWORD = System.getenv("PASSWORD");
+    static final String VALID_USERNAME = System.getProperty("username");
+    static final String VALID_PASSWORD = System.getProperty("password");
     static final String SUMMARY_DATA = "Test summary data.";
     static final String EDIT_DATA = "Edited summary!";
     @BeforeEach
