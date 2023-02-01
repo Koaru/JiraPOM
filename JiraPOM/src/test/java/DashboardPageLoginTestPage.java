@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.*;
 import pageFactory.*;
 
+import java.net.MalformedURLException;
+
 public class DashboardPageLoginTestPage {
     static LoginPage loginPage;
     static final String VALID_USERNAME = System.getProperty("username");
@@ -9,13 +11,13 @@ public class DashboardPageLoginTestPage {
     final String INVALID_USERNAME = "invalid-username";
     final String INVALID_PASSWORD = "invalid-password";
     @BeforeEach
-    public void init(){
+    public void init() throws MalformedURLException {
         loginPage = new LoginPage();
         loginPage.navigateToDashboardLoginPage();
     }
 
     @Test
-    public void validLogin(){
+    public void validLogin() throws MalformedURLException {
         DashboardPage dashboardPage = new DashboardPage();
         ProfilePage profilePage = new ProfilePage();
         loginPage.loggingInInDashboard(VALID_USERNAME,VALID_PASSWORD);

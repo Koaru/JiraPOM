@@ -7,12 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class IssuePage extends BasePage{
 
 
-    public IssuePage() {
+    public IssuePage() throws MalformedURLException {
         super();
     }
 

@@ -3,6 +3,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pageFactory.*;
 
+import java.net.MalformedURLException;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CreateIssueTestPage {
     static LoginPage loginPage;
@@ -13,7 +15,7 @@ public class CreateIssueTestPage {
     static final String SUMMARY_DATA = "Test summary data.";
     static final String NON_EXISTING_PROJECT = "a";
     @BeforeEach
-    public void init(){
+    public void init() throws MalformedURLException {
         loginPage = new LoginPage();
         issuePage = new IssuePage();
         dashboardPage = new DashboardPage();

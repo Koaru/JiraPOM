@@ -8,13 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class ProjectPage extends BasePage {
 
 
 
-    public ProjectPage() {
+    public ProjectPage() throws MalformedURLException {
         super();
     }
 

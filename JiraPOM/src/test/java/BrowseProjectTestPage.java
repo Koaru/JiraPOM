@@ -3,6 +3,8 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.api.*;
 import pageFactory.*;
 
+import java.net.MalformedURLException;
+
 public class BrowseProjectTestPage {
     static LoginPage loginPage;
     static ProjectPage projectPage;
@@ -12,7 +14,7 @@ public class BrowseProjectTestPage {
 
 
     @BeforeEach
-    public void init() {
+    public void init() throws MalformedURLException {
         loginPage = new LoginPage();
         projectPage = new ProjectPage();
         dashboardPage = new DashboardPage();

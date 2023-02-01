@@ -6,11 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class ProfilePage extends BasePage{
 
-    public ProfilePage() {
+    public ProfilePage() throws MalformedURLException {
         super();
     }
 

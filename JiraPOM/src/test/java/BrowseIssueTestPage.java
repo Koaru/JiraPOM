@@ -2,6 +2,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pageFactory.*;
+
+import java.net.MalformedURLException;
+
 public class BrowseIssueTestPage {
     static LoginPage loginPage;
     static IssuePage issuePage;
@@ -9,7 +12,7 @@ public class BrowseIssueTestPage {
     static final String VALID_PASSWORD = System.getProperty("password");
 
     @BeforeEach
-    public void init(){
+    public void init() throws MalformedURLException {
         loginPage = new LoginPage();
         issuePage = new IssuePage();
         loginPage.navigateToLoginPage();

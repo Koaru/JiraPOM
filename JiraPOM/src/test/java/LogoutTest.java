@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.*;
 import pageFactory.*;
+
+import java.net.MalformedURLException;
+
 public class LogoutTest {
 
     static LoginPage loginPage;
@@ -8,14 +11,14 @@ public class LogoutTest {
     final String EXPECTED_MESSAGE = "You are now logged out. Any automatic login has also been stopped.\n" +
             "Didn't mean to log out? Log in again.";
     @BeforeEach
-    public void init(){
+    public void init() throws MalformedURLException {
         loginPage = new LoginPage();
         loginPage.navigateToLoginPage();
         loginPage.loggingIn(VALID_USERNAME,VALID_PASSWORD);
     }
 
     @Test
-    public void logout(){
+    public void logout() throws MalformedURLException {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.clickOnProfileBtn();
         dashboardPage.clickOnLogoutBtn();
