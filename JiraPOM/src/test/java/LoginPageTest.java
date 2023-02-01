@@ -3,9 +3,6 @@ import pageFactory.*;
 public class LoginPageTest {
 
     static LoginPage loginPage;
-
-    //static final String VALID_USERNAME = System.getenv("USERNAME");
-    //static final String VALID_PASSWORD = System.getenv("PASSWORD");
     static final String VALID_USERNAME = System.getProperty("username");
     static final String VALID_PASSWORD = System.getProperty("password");
     final String INVALID_USERNAME = "invalid-username";
