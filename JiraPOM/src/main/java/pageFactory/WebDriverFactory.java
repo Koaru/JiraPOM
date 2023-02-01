@@ -11,10 +11,15 @@ public class WebDriverFactory {
         if (webDriver == null){
             String webdriverType = System.getProperty("browser", "chrome");
             switch (webdriverType) {
-                case "firefox" -> webDriver =  new FirefoxDriver();
-                case "chrome" -> webDriver = new ChromeDriver();
-                default -> throw new RuntimeException("Unsupported webdriver: " + webdriverType);
-            };
+                case "firefox" :
+                    webDriver =  new FirefoxDriver();
+                    break;
+                case "chrome" :
+                    webDriver = new ChromeDriver();
+                    break;
+                default :
+                    throw new RuntimeException("Unsupported webdriver: " + webdriverType);
+            }
         }
         return webDriver;
     }
