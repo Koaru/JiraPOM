@@ -8,11 +8,11 @@ pipeline {
                 echo 'Workspace is cleaned'
             }
         }
-        stage ('Second Stage'){
+        stage ('LoginPageTest'){
             parallel{
                     stage('Paralell 1') {
                         steps{
-                            echo 'Stage 2 - Parallel 1'
+                            sh 'mvn test -Dtest="LoginPageTest#validLogin" -Dusername=automation40 -Dpassword=CCAutoTest19. -DbrowserType=chrome -DisRemote=true'
                             }
                     }
                     stage('Paralell 2'){
