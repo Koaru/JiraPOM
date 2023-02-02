@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Workspace clean') {
+        stage('Workspace setup') {
             steps {
                 cleanWs()
                 echo 'Workspace is cleaned'
@@ -24,9 +24,10 @@ pipeline {
                     }
                 }
             }
-        stage('Third Stage'){
+        stage('Workspace teardown'){
             steps {
-                echo('Stage 3')
+                cleanWs()
+                echo 'Workspace is cleaned'
             }
         }
         }
