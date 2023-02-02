@@ -16,19 +16,20 @@ pipeline {
                 }
             }
         }
-        stage ('LoginPageTest'){
+        stage ('Login Tests'){
             parallel{
-                    stage('Login') {
+                    stage('Chrome') {
                         steps{
-                                dir('JiraPOM') {
+                            dir('JiraPOM') {
                                 sh 'mvn test -Dtest="LoginPageTest" -Dusername=automation40 -Dpassword=CCAutoTest19. -DbrowserType=chrome -DisRemote=true'
                                 }
                             }
                     }
-                    stage('Paralell 2'){
+                    stage('Firefox'){
                         steps{
-                            echo 'Stage 2 - Paralell 2'
-
+                            dir('JiraPOM') {
+                                sh 'mvn test -Dtest="LoginPageTest" -Dusername=automation40 -Dpassword=CCAutoTest19. -DbrowserType=firefox -DisRemote=true'
+                                }
                         }
                     }
                 }
