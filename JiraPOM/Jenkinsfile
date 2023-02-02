@@ -12,8 +12,10 @@ pipeline {
             parallel{
                     stage('Paralell 1') {
                         steps{
-                                dir('JiraPOM')
+                                dir('JiraPOM'){
                                     sh 'mvn test -Dtest="LoginPageTest#validLogin" -Dusername=automation40 -Dpassword=CCAutoTest19. -DbrowserType=chrome -DisRemote=true'
+                                }
+
                             }
                     }
                     stage('Paralell 2'){
