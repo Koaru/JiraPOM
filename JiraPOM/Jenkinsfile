@@ -14,19 +14,15 @@ pipeline {
                 dir('JiraPOM'){
                     sh 'mvn -B -DskipTests clean package'
                 }
-
             }
         }
         stage ('LoginPageTest'){
             parallel{
-                    stage('Paralell 1') {
+                    stage('Login') {
                         steps{
                                 dir('JiraPOM') {
-                                sh 'mvn test -Dtest="LoginPageTest#validLogin" -Dusername=automation40 -Dpassword=CCAutoTest19. -DbrowserType=chrome -DisRemote=true'
+                                sh 'mvn test -Dtest="LoginPageTest" -Dusername=automation40 -Dpassword=CCAutoTest19. -DbrowserType=chrome -DisRemote=true'
                                 }
-
-
-
                             }
                     }
                     stage('Paralell 2'){
@@ -34,7 +30,6 @@ pipeline {
                             echo 'Stage 2 - Paralell 2'
 
                         }
-
                     }
                 }
             }
