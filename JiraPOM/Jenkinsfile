@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('First Stage') {
+        stage('Workspace clean') {
             steps {
-                echo 'Stage 1'
+                cleanWs()
+                echo 'Workspace is cleaned'
             }
         }
         stage ('Second Stage'){
