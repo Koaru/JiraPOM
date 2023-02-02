@@ -21,14 +21,14 @@ pipeline {
                     stage('Chrome') {
                         steps{
                             dir('JiraPOM') {
-                                sh 'mvn test -Dtest="LoginPageTest" -Dusername=automation40 -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeChrome -DisRemote=true'
+                                sh 'mvn test -Dtest="LoginPageTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeChrome -DisRemote=true'
                                 }
                             }
                     }
                     stage('Firefox'){
                         steps{
                             dir('JiraPOM') {
-                                sh 'mvn test -Dtest="LoginPageTest" -Dusername=automation40 -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeFirefox -DisRemote=true'
+                                sh 'mvn test -Dtest="LoginPageTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeFirefox -DisRemote=true'
                                 }
                         }
                     }
