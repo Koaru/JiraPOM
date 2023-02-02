@@ -12,7 +12,7 @@ pipeline {
             parallel{
                     stage('Paralell 1') {
                         steps{
-                            sh ls
+                             ls
                             //sh 'mvn test -Dtest="LoginPageTest#validLogin" -Dusername=automation40 -Dpassword=CCAutoTest19. -DbrowserType=chrome -DisRemote=true'
                             }
                     }
