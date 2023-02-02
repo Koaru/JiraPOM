@@ -34,6 +34,24 @@ pipeline {
                     }
                 }
             }
+        stage ('Logout Tests') {
+            parallel{
+                stage('Chrome') {
+                    steps{
+                        dir('JiraPOM') {
+                            sh 'mvn test -Dtest="LogoutPageTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeChrome -DisRemote=true'
+                        }
+                    }
+                }
+                stage('Firefox') {
+                    steps{
+                        dir('JiraPOM') {
+                            sh 'mvn test -Dtest="LogoutPageTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeFirefox -DisRemote=true'
+                        }
+                    }
+                }
+            }
+        }
         stage('Workspace teardown'){
             steps {
                 cleanWs()
