@@ -22,14 +22,25 @@ pipeline {
                         steps{
                             dir('JiraPOM') {
                                 sh 'mvn test -Dtest="LoginPageTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeChrome -DisRemote=true'
-                                }
                             }
+                        }
+                        post{
+                            always{
+                                junit 'target/surefire-reports/*.xml'
+                            }
+                        }
+
                     }
                     stage('Firefox'){
                         steps{
                             dir('JiraPOM') {
                                 sh 'mvn test -Dtest="LoginPageTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeFirefox -DisRemote=true'
                                 }
+                        }
+                        post{
+                            always{
+                                junit 'target/surefire-reports/*.xml'
+                            }
                         }
                     }
                 }
@@ -42,11 +53,22 @@ pipeline {
                             sh 'mvn test -Dtest="LogoutTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeChrome -DisRemote=true'
                         }
                     }
+                    post{
+                        always{
+                            junit 'target/surefire-reports/*.xml'
+                        }
+                    }
+
                 }
                 stage('Firefox') {
                     steps{
                         dir('JiraPOM') {
                             sh 'mvn test -Dtest="LogoutTest" -Dusername=$JIRAUSERNAME -Dpassword=$JIRAPWD -DbrowserType=$BrowserTypeFirefox -DisRemote=true'
+                        }
+                    }
+                    post{
+                        always{
+                             junit 'target/surefire-reports/*.xml'
                         }
                     }
                 }
