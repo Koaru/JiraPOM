@@ -26,7 +26,7 @@ pipeline {
                         }
                         post{
                             always{
-                                junit 'JiraPOM/target/surefire-reports/TEST-LoginPageTest.xml'
+                                junit '**/target/surefire-reports/TEST-LoginPageTest.xml'
                             }
                         }
 
@@ -55,7 +55,7 @@ pipeline {
                     }
                     post{
                         always{
-                            junit 'target/surefire-reports/TEST-*.xml'
+                            junit '**/target/surefire-reports/TEST-*.xml'
                         }
                     }
 
@@ -68,7 +68,7 @@ pipeline {
                     }
                     post{
                         always{
-                             junit 'target/surefire-reports/TEST-*.xml'
+                             junit '**/target/surefire-reports/TEST-*.xml'
                         }
                     }
                 }
