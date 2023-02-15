@@ -39,7 +39,7 @@ pipeline {
                         }
                         post{
                             always{
-                                junit 'target/surefire-reports/TEST-LoginPageTest.xml'
+                                junit '**/target/surefire-reports/TEST-LoginPageTest.xml'
                             }
                         }
                     }
